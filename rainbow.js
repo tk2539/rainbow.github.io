@@ -3,8 +3,23 @@ function saveImage() {
   const ctx = canvas.getContext('2d');
   const text = document.getElementById('text-input').value;
 
-  // 背景透過のまま初期化
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // 選択された背景オプションを取得
+  const transparentBgRadio = document.getElementById('transparent-bg');
+  const whiteBgRadio = document.getElementById('white-bg');
+  let backgroundColor = 'transparent'; // デフォルトは背景透過
+
+  if (whiteBgRadio.checked) {
+    backgroundColor = 'white';
+  }
+
+  // 背景の描画
+  if (backgroundColor === 'white') {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  } else {
+    // 背景透過のまま初期化
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
 
   // グラデーションの作成（横方向）
   const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
@@ -17,7 +32,7 @@ function saveImage() {
   gradient.addColorStop(1, "violet");
 
   // フォント設定（好きなフォント名に変更OK）
-  ctx.font = "bold 100px sans-serif";
+  ctx.font = "bold 100px sans-serif"; // この行は下の行で上書きされるため実質的に不要ですが、念のため残しました。
   ctx.fillStyle = gradient;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
