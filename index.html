@@ -12,6 +12,13 @@
 </head>
 <body>
   <input type="text" id="text-input" value="" style="font-size: 20px;">
+  
+  <input type="radio" id="transparent-bg" name="background-option" value="transparent" checked>
+  <label for="transparent-bg">背景透過</label>
+  
+  <input type="radio" id="white-bg" name="background-option" value="white">
+  <label for="white-bg">白背景</label>
+  
   <button onclick="saveImage()">保存する</button>
   <canvas id="canvas" width="1200" height="200"></canvas>
 
