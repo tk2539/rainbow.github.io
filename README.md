@@ -8,7 +8,7 @@ This is a site where you can create and save rainbow colored text with a transpa
 
 Modification and secondary distribution are free.
 
-----------------------------------------------------------------
+---
 
 アップデート
 
