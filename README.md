@@ -10,7 +10,7 @@ Modification and secondary distribution are free.
 
 ---
 
-###　アップデート
+## アップデート
 
 2025/7/18
 
