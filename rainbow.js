@@ -2,26 +2,30 @@ function saveImage() {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   const text = document.getElementById('text-input').value;
+  const canvasWidthInput = document.getElementById('canvas-width-input'); // Get the new input element
 
-  // 選択された背景オプションを取得
+  // Get the selected background option
   const transparentBgRadio = document.getElementById('transparent-bg');
   const whiteBgRadio = document.getElementById('white-bg');
-  let backgroundColor = 'transparent'; // デフォルトは背景透過
+  let backgroundColor = 'transparent'; // Default is transparent background
 
   if (whiteBgRadio.checked) {
     backgroundColor = 'white';
   }
 
-  // 背景の描画
+  // Set canvas width based on user input, default to 1200 if invalid or empty
+  canvas.width = parseInt(canvasWidthInput.value) || 1200; 
+
+  // Background drawing
   if (backgroundColor === 'white') {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   } else {
-    // 背景透過のまま初期化
+    // Initialize with transparent background
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
-  // グラデーションの作成（横方向）
+  // Create gradient (horizontal)
   const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
   gradient.addColorStop(0, "red");
   gradient.addColorStop(0.17, "orange");
@@ -31,17 +35,17 @@ function saveImage() {
   gradient.addColorStop(0.85, "indigo");
   gradient.addColorStop(1, "violet");
 
-  // フォント設定（好きなフォント名に変更OK）
-  ctx.font = "bold 100px sans-serif"; // この行は下の行で上書きされるため実質的に不要ですが、念のため残しました。
+  // Font settings (can change to preferred font name)
+  ctx.font = "bold 100px sans-serif"; // This line is effectively unnecessary as it's overwritten below, but kept for reference.
   ctx.fillStyle = gradient;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
 
-  // テキスト描画（中央）
+  // Draw text (centered)
   ctx.font = "bold 100px 'Hiragino Mincho ProN', 'MS 明朝', serif";
   ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 
-  // PNGとして保存
+  // Save as PNG
   const link = document.createElement('a');
   link.download = 'rainbow-text.png';
   link.href = canvas.toDataURL('image/png');
